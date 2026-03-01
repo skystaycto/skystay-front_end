@@ -1,0 +1,141 @@
+.paragraph{
+    line-height: 180%;
+}
+#discover{
+    cursor: pointer;
+}
+
+.image-fit {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-loading {
+    object-fit: contain; /* or another fitting strategy like `scale-down` */
+    width: auto; /* Allow image to maintain aspect ratio */
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.7); /* Inner white box shadow */
+}
+  
+.gallery-image {
+    width: 300px;
+    margin-right: 10px; /* Add space between images */
+}
+.gallery-image2 {
+    width: 250px;
+    height: 150px;
+    margin-right: 10px; /* Add space between images */
+}
+
+.calendar-wrapper {
+    display: flex;
+    width: 100%;
+    margin: auto;
+}
+.calendar-container {
+    width: auto;
+}
+.full-width-calendar {
+    width: auto;
+}
+
+.booked-date {
+    text-decoration: line-through;
+    border-radius: 8px;
+    background-color: rgb(255, 85, 114);
+}
+
+.clear-dates-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.clear-dates-button:hover {
+    background-color: #ff1a1a;
+}
+
+.reserve-card {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 80px; /* Adjust as needed */
+}
+
+.reservecard2 {
+    position: fixed;
+    top: 62px;
+    right: -140%; /* Start off-screen */
+    width: 300px; /* Adjust based on your design */
+    height: 100%;
+    transition: right 0.5s ease; /* Slide-in animation */
+}
+
+.reservecard2.active {
+    right: 0; /* Slide in */
+}
+
+.property {
+    background: linear-gradient(90deg, rgba(0,108,228,1) 0%, rgba(7,151,255,1) 100%, rgba(0,212,255,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.pagination button {
+    width: 50px;
+    margin: 0 5px;
+    padding: 10px 10px;
+    border: none;
+    background-color:#FF385C;
+    cursor: pointer;
+    border-radius: 10px;
+}
+  
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+  
+.pagination button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+@keyframes changeColorSize {
+    0% {
+      color: white;
+      font-size: 1em;
+    }
+    50% {
+      color: #FF385C;
+      font-size: 1em;
+      font-weight: bold;
+    }
+    100% {
+      color: white;
+      font-size: 1em;
+    }
+}
+  
+.highlight {
+    animation: changeColorSize 3s infinite;
+}

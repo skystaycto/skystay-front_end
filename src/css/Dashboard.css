@@ -1,0 +1,129 @@
+.dashbtn{
+    width: 200px;
+    font-size: 14px;
+}
+.dashbtn:hover{
+    background-color: black;
+    border: 1px solid white;
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+.dashbtn2{
+    width: 200px;
+    font-size: 12px;
+    padding: 4px;
+}
+.dashbtn2:hover{
+    background-color: black;
+    border: 1px solid white;
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+.selected-btn {
+    background-color: black;
+    color: white; /* Ensure the text is readable on a black background */
+}
+.editbtn{
+    font-size: 14px;
+    background-color: #006CE4;
+}
+.editbtn:hover{
+    background-color: #FF385C;
+}
+.editbtn2{
+    width: auto;
+    font-size: 12px;
+    background-color: #FF385C;
+}
+.editbtn2:hover{
+    background-color: #006CE4;
+    border: 1px solid white;
+}
+.editbtn3{
+    width: auto;
+    font-size: 12px;
+    background-color: #006CE4;
+}
+.editbtn3:hover{
+    background-color: #FF385C;
+    border: 1px solid white;
+}
+
+.dotcontainer{
+    position: relative;
+}
+.menucont{
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+.editbtn4{
+    display: block;
+    width: 80px;
+    font-size: 10px;
+    background-color: #006CE4;
+}
+.editbtn4:hover{
+    background-color: #FF385C;
+    border: 1px solid white;
+}
+.editbtn5{
+    display: block;
+    width: 80px;
+    font-size: 12px;
+    background-color: #006CE4;
+}
+.editbtn5:hover{
+    background-color: #FF385C;
+    border: 1px solid white;
+}
+.editbtn6{
+    display: block;
+    width: 80px;
+    font-size: 14px;
+    background-color: #006CE4;
+}
+.editbtn6:hover{
+    background-color: #FF385C;
+    border: 1px solid white;
+}
+
+.cardcontainer{
+    position: relative;
+}
+.editform {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+}
+
+.maincard{
+    position: relative;
+}
+.editcard{
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+
+.minimenucard {
+    position: fixed;
+    top: 58px;
+    left: -250px; /* Start off-screen */
+    width: 250px; /* Adjust based on your design */
+    height: 200%;
+    transition: right 0.5s ease; /* Slide-in animation */
+    z-index: 200;
+}
+
+.minimenucard.active {
+    left: -5px; /* Slide in */
+}
+
+.toggletab{
+    position: absolute;
+    top: 0;
+    right: -28px;
+}

@@ -1,0 +1,7 @@
+.relative .absolute {
+    display: none;
+}
+  
+.relative:hover .absolute {
+    display: block;
+}

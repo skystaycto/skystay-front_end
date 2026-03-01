@@ -1,0 +1,43 @@
+.custom-datepicker {
+    width: auto;
+    max-width: 320px; 
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: -180px; 
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.react-datepicker__header {
+    background-color: white;
+}
+
+.react-datepicker__triangle {
+    display: none;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+    top: 10px;
+    line-height: 1.7rem;
+    height: 1.7rem;
+    overflow: hidden;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+}
+
+.react-datepicker__navigation--previous {
+    left: -13px;
+}
+
+.react-datepicker__navigation--next {
+    right: -13px;
+}
