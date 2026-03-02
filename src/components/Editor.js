@@ -24,15 +24,7 @@ export default function Editor({ editorHtml,setEditorHtml} ) {
     'link', 'image', 'video'
   ];
 
-  // Custom font styles
-  const customFontStyles = {
-    '.ql-snow .ql-picker.ql-font .ql-picker-label': {
-      fontFamily: '"font-outfit above", sans-serif', // Set your desired default font here
-    },
-    '.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="font outfit above"]': {
-      fontFamily: '"font-outfit above", sans-serif', // Set your desired default font here
-    },
-  };
+  // custom font styles injected directly in JSX; no runtime object required
 
   useEffect(() => {
     if (quillRef.current) {

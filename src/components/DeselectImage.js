@@ -26,7 +26,7 @@ export default function DeselectImage({ photos, setPhotos }) {
     return (
       <div>
         <h3>Selected Image</h3>
-        <img src={photos[selectedImageIndex]} alt={`Selected Image ${selectedImageIndex + 1}`} style={{ height: '200px', width: 'auto' }} />
+        <img src={photos[selectedImageIndex]} alt={`Selected ${selectedImageIndex + 1}`} style={{ height: '200px', width: 'auto' }} />
         <Button variant="promo3" onClick={handleRemoveImage}>
             Remove Selected Image
         </Button>
@@ -48,7 +48,7 @@ export default function DeselectImage({ photos, setPhotos }) {
               margin: '10px',
             }}
           >
-            <img src={src} alt={`Image ${index + 1}`} style={{ height: '200px', width: 'auto' }} />
+            <img src={src} alt={`Item ${index + 1}`} style={{ height: '200px', width: 'auto' }} />
           </div>
         ))}
       </div>

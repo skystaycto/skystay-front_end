@@ -35,7 +35,7 @@ const ScrollToTopButton = () => {
           className="fixed bottom-5 right-5 xsm:right-2 z-50 bg-opacity-80  bg-white shadow-lg hover:bg-blue-700 transition-all duration-300 cursor-pointer flex items-center justify-center"
           style={{width: '32px', height: '32px', borderRadius: '50%'}}
         >
-          <img className='w-[18px]' src={bluearrow}/>
+          <img className='w-[18px]' src={bluearrow} alt="Scroll to top"/>
         </div>
       )}
     </div>

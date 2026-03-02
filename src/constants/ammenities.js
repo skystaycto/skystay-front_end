@@ -8,7 +8,7 @@ import tv from '../assets/tv.svg'
 import security from '../assets/security.svg'
 import safe from '../assets/safe.svg'
 import elevator from '../assets/elevator.svg'
-import air from '../assets/Air.png'
+// 'air' asset removed; we use 'aircondition' instead
 import balcony from '../assets/balcony.svg'
 import bodysoap from '../assets/bodysoap.svg'
 import closet from '../assets/closet.svg'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { CalendarDays, User } from 'lucide-react'
+import { CalendarDays } from 'lucide-react'
 
 export default function Articlecard({ blog }) {
   return (

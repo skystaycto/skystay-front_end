@@ -8,7 +8,7 @@ import { CheckoutContext } from '../context/CheckoutContext';
 export default function EditService({toggleEditForm, selectedService}) {
 
   const {editService} = useContext(CheckoutContext)
-  const [service, setService] = useState({});
+  const [, setService] = useState({});
 
   const [price, setPrice] = useState('');
   const [name, setName] = useState('');
@@ -71,7 +71,7 @@ export default function EditService({toggleEditForm, selectedService}) {
     const serviceData = {
       service_name: name,
       service_description: description,
-      service_image: image,
+      service_image: imageUrl,
       service_price: parseInt(price),
     };
 

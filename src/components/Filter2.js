@@ -67,7 +67,7 @@ export default function Filter2() {
                         <p className='text-xs font-semibold'>Min Price</p>
                         <div className='flex w-fit'>
                             <div className='w-[30px] flex items-center justify-center rounded-l-lg border-[1px] border-solid border-gray-300'>
-                                <img src={usd}/>
+                                <img src={usd} alt=""/>
                             </div>
                             <input min={0} onChange={(e) => setMinPrice(e.target.value)} type='number'  className='w-[80px] border-[1px] border-solid border-gray-300 px-2 py-1 rounded-l-none rounded-r-lg'/>
                         </div>
@@ -76,7 +76,7 @@ export default function Filter2() {
                         <p className='text-xs font-semibold'>Max Price</p>
                         <div className='flex w-fit'>
                             <div className='w-[30px] flex items-center justify-center rounded-l-lg border-[1px] border-solid border-gray-300'>
-                                <img src={usd}/>
+                                <img src={usd} alt=""/>
                             </div>
                             <input min={0} onChange={(e) => setMaxPrice(e.target.value)} type='number'  className='w-[80px] border-[1px] border-solid border-gray-300 px-2 py-1 rounded-l-none rounded-r-lg'/>
                         </div>
@@ -92,7 +92,7 @@ export default function Filter2() {
                         <p className='text-xs font-semibold'>Bedrooms</p>
                         <div className='flex w-fit'>
                             <div className='w-[30px] flex items-center justify-center rounded-l-lg border-[1px] border-solid border-gray-300'>
-                                <img className='w-[20px]' src={bed2}/>
+                                <img className='w-[20px]' src={bed2} alt=""/>
                             </div>
                             <input onChange={(e) => setBedrooms(e.target.value)} type='number'  className='w-[80px] border-[1px] border-solid border-gray-300 px-2 py-1 rounded-l-none rounded-r-lg'/>
                         </div>
@@ -101,7 +101,7 @@ export default function Filter2() {
                         <p className='text-xs font-semibold'>Bathrooms</p>
                         <div className='flex w-fit'>
                             <div className='w-[30px] flex items-center justify-center rounded-l-lg border-[1px] border-solid border-gray-300'>
-                                <img className='w-[20px]' src={bath2}/>
+                                <img className='w-[20px]' src={bath2} alt=""/>
                             </div>
                             <input onChange={(e) => setBathrooms(e.target.value)} type='number' className='w-[80px] border-[1px] border-solid border-gray-300 px-2 py-1 rounded-l-none rounded-r-lg'/>
                         </div>
@@ -113,7 +113,7 @@ export default function Filter2() {
         
         <div className='w-fit m-auto flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-2 my-2 rounded-lg'>
             <input onChange={(e) => handleAmenityChange(e, 'Long Term Stay')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-            <img className='px-[5px]' src={longterm}/>
+            <img className='px-[5px]' src={longterm} alt=""/>
             <p className='text-sm'>Long term stays allowed</p>
         </div>
         <div className='px-[10px] mb-5'>
@@ -121,62 +121,62 @@ export default function Filter2() {
             <div className='flex flex-wrap'>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-2 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Parking')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={parking}/>
+                        <img className='px-[5px]' src={parking} alt=""/>
                     <p className='text-xs'>Parking</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-2 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Kitchen')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={kitchen}/>
+                        <img className='px-[5px]' src={kitchen} alt=""/>
                     <p className='text-xs'>Kitchen</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Wifi')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={wifi}/>
+                        <img className='px-[5px]' src={wifi} alt=""/>
                     <p className='text-xs'>Wifi</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Swimming Pool')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={swimming}/>
+                        <img className='px-[5px]' src={swimming} alt=""/>
                     <p className='text-xs'>Swimming Pool</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Workspace')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={work}/>
+                        <img className='px-[5px]' src={work} alt=""/>
                     <p className='text-xs'>Workspace</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Gym')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={gym}/>
+                        <img className='px-[5px]' src={gym} alt=""/>
                     <p className='text-xs'>Gym</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Air Conditioner')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={air}/>
+                        <img className='px-[5px]' src={air} alt=""/>
                     <p className='text-xs'>Air Conditioning</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'TV')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={tv}/>
+                        <img className='px-[5px]' src={tv} alt=""/>
                     <p className='text-xs'>HDTV</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Safe')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={safe}/>
+                        <img className='px-[5px]' src={safe} alt=""/>
                     <p className='text-xs'>Safe</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Security')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={security}/>
+                        <img className='px-[5px]' src={security} alt=""/>
                     <p className='text-xs'>Security Cameras</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Balcony')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={balcony}/>
+                        <img className='px-[5px]' src={balcony} alt=""/>
                     <p className='text-xs'>Balcony</p>
                 </div>
                 <div className='w-fit flex flex-row items-center justify-center border-[1px] border-solid border-gray-300 px-1 m-1 rounded-lg'>
                     <input onChange={(e) => handleAmenityChange(e, 'Elevator')} className='px-[5px]' type="checkbox" id="long-term-stays" name="long-term-stays"/>
-                    <img className='px-[5px]' src={elevator}/>
+                        <img className='px-[5px]' src={elevator} alt=""/>
                     <p className='text-xs'>Elevator</p>
                 </div>
             </div>

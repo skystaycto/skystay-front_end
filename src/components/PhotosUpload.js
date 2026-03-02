@@ -51,7 +51,7 @@ const PhotosUpload = ({ setDocumentPhotos}) => {
 
     return (
         <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`} style={styles.dropzone}>
-          <img src={cloud} style={styles.cloudImage} />
+          <img src={cloud} alt="Upload cloud" style={styles.cloudImage} />
           <input {...getInputProps()} />
           {
             isDragActive ?

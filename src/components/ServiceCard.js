@@ -28,7 +28,7 @@ export default function ServiceCard({service, toggleEditForm, setSelectedService
             </div>
         </div>
         <div className='my-[10px]'>
-            <img className='w-full rounded-[4px]' src={service.service_image} />
+            <img className='w-full rounded-[4px]' src={service.service_image} alt={service.service_name || ''} />
         </div>
         <div>
             <p className='font-light'>{service.service_name} <span className='font-bold'>${service.service_price}</span></p>

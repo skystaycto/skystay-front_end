@@ -57,7 +57,7 @@ function App() {
                   <PromoCodesProvider>
                     <ListRequestProvider>
                       <BlogsProvider>
-                      <Suspense fallback={<div className='flex items-center justify-center h-screen'><img className='loader xsm:w-[48px] sm:w-[52px] md:w-[64px] lg:w-[64px]' src={loader}/></div>}>
+                      <Suspense fallback={<div className='flex items-center justify-center h-screen'><img className='loader xsm:w-[48px] sm:w-[52px] md:w-[64px] lg:w-[64px]' src={loader} alt="Loading"/></div>}>
                         <Routes>
                           <Route path="/" element={<Layout/>}>
                             <Route index element={<Home/>}/>

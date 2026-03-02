@@ -11,7 +11,7 @@ export default function Comments({comment}) {
     <div className='m-[20px] sm:m-[10px] xsm:m-[0px]'>
       <div className='w-[340px] xsm:w-[320px]'>
         <div className='flex flex-row'>
-          <img src={`${comment.user_img}`} style={{ width: '42px', height: '42px', borderRadius: '21px', border: '1px solid gray' }}/>
+          <img src={`${comment.user_img}`} alt={comment.user_names || ''} style={{ width: '42px', height: '42px', borderRadius: '21px', border: '1px solid gray' }}/>
           <div className='ml-[20px] sm:ml-[10px] xsm:ml-[10px]'>
             <p className='text-sm font-semibold'>{comment.user_names}</p>
             <p className='text-sm font-semibold'>Rating: { Number(comment.rating_average).toFixed(1) }</p>

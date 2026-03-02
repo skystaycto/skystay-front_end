@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Facebook, Instagram, Twitter, Linkedin, Send } from 'lucide-react'
+import { Facebook, Instagram, Twitter, Send } from 'lucide-react'
 import '../css/Footer.css'
-import { toast, Slide } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Footer() {

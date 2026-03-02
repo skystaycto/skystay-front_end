@@ -34,7 +34,7 @@ const ImageItem = ({ id, src, index, moveImage }) => {
         display: 'inline-block',
       }}
     >
-      <img src={src} alt={`Image ${index + 1}`} style={{ height: '100%', width: 'auto' }} />
+      <img src={src} alt={`Item ${index + 1}`} style={{ height: '100%', width: 'auto' }} />
     </div>
   );
 };

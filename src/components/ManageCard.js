@@ -203,7 +203,7 @@ export default function ManageCard({ listing: initialListing, allfeatures }) {
 
       <div className='mt-4 pt-4 border-t border-gray-100 flex flex-wrap gap-2 lg:gap-3 justify-start sm:justify-end'>
         <button onClick={togglePromoForm} className='flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink/10 text-pink hover:bg-pink hover:text-white transition-colors text-[10px] font-semibold uppercase tracking-wide'>
-          <img src={promote} className='h-3 brightness-0 invert flex-shrink-0 opacity-80' style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(87%) saturate(3015%) hue-rotate(323deg) brightness(101%) contrast(106%)' }} /> Promote
+          <img src={promote} alt="Promote" className='h-3 brightness-0 invert flex-shrink-0 opacity-80' style={{ filter: 'brightness(0) saturate(100%) invert(43%) sepia(87%) saturate(3015%) hue-rotate(323deg) brightness(101%) contrast(106%)' }} /> Promote
         </button>
         <button onClick={handleVisibility} className='flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors text-[10px] font-semibold uppercase tracking-wide'>
           <img className='h-3 opacity-60' src={visible} alt="visible" /> Toggle Vis

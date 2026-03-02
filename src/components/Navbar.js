@@ -9,12 +9,10 @@ import { Search } from 'lucide-react';
 import '../css/Navbar.css'
 import '../css/Signup.css'
 import { UserContext } from '../context/UserContext';
-import { FilterContext } from '../context/FilterContext';
 
 export default function Navbar() {
 
     const { user, loginUser, logoutUser, handleGoogleSuccess } = useContext(UserContext)
-    const { setFilterTerms } = useContext(FilterContext);
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [showLoginCard, setShowLoginCard] = useState(false);
