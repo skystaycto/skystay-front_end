@@ -146,6 +146,13 @@ export const API_ENDPOINTS = {
   // Blog Service (Port 8086) - Database issues
   BLOG: {
     BASE: SERVICES.BLOG,
+    // Standard CRUD endpoints
+    LIST: `${SERVICES.BLOG}/blogs`,
+    DETAIL: (id) => `${SERVICES.BLOG}/blogs/${id}`,
+    CREATE: `${SERVICES.BLOG}/blogs`,
+    UPDATE: (id) => `${SERVICES.BLOG}/blogs/${id}`,
+    DELETE: (id) => `${SERVICES.BLOG}/blogs/${id}`,
+    // Alternative endpoints for newer API versions
     POST_BY_SLUG: (slug) => `${SERVICES.BLOG}/posts/${slug}`,
     CATEGORY_BY_SLUG: (slug) => `${SERVICES.BLOG}/categories/${slug}`,
     CREATE_POST: `${SERVICES.BLOG}/posts`,
