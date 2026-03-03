@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import 'react-phone-number-input/style.css'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
@@ -53,7 +54,7 @@ export default function OnboardForm() {
 
         setIsSubmitting(true);
         try {
-            await axios.post('https://skystayserver-n8xf.onrender.com/addonboarding', formData);
+            await axios.post(API_ENDPOINTS.CUSTOM.ON_BOARDING, formData);
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',

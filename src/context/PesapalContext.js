@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 
 export const PesapalContext = createContext();
 
@@ -37,7 +38,7 @@ export default function PesapalProvider({ children }) {
     // Add transaction data to the database
     const addTransaction = async (data) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/addtransaction', data);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.TRANSACTION, data);
             if (response.status === 200 || response.status === 201) {  // Check for 200 or 201
                 console.log('Transaction successful:', response.data);
             } else {
@@ -51,7 +52,7 @@ export default function PesapalProvider({ children }) {
     // Helper to fetch Pesapal token
     const getPesapalToken = async () => {
         try {
-            const response = await fetch('https://skystayserver-n8xf.onrender.com/get-pesapal-token', {
+            const response = await fetch(API_ENDPOINTS.CUSTOM.PESAPAL_TOKEN, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -87,7 +88,7 @@ export default function PesapalProvider({ children }) {
             return null;
         }
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/orderrequest', {
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.ORDER_REQUEST, {
                 token: tokenValue,
                 callback_url,
                 notification_id: notificationid,
@@ -130,7 +131,7 @@ export default function PesapalProvider({ children }) {
             return null;
         }
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/transactionstatus', {
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.TRANSACTION_STATUS, {
                 token: tokenValue,
                 order_tracking_id: trackingId,
             }, {

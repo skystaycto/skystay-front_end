@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
+import API_ENDPOINTS from '../config/api';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -29,7 +30,7 @@ export default function PromoCodesProvider({ children }) {
         }
 
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/promocodes');
+            const response = await axios.get(API_ENDPOINTS.PROMO.LIST);
             if (response.status === 200) {
                 setAllpromocodes(response.data);
 
@@ -48,7 +49,7 @@ export default function PromoCodesProvider({ children }) {
     // Fetch promocodes without cache
     const fetchAllPromocodesWithoutCache = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/promocodes');
+            const response = await axios.get(API_ENDPOINTS.PROMO.LIST);
             if (response.status === 200) {
                 setAllpromocodes(response.data);
             }
@@ -59,7 +60,7 @@ export default function PromoCodesProvider({ children }) {
 
     const addPromocode = async (promocodeData) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/promocodes', promocodeData);
+            const response = await axios.post(API_ENDPOINTS.PROMO.CREATE, promocodeData);
             if (response.status === 201) {
                 await fetchAllPromocodesWithoutCache();
                 showToast('Promocode created successfully!');
@@ -72,7 +73,7 @@ export default function PromoCodesProvider({ children }) {
 
     const deletePromocode = async (promocode_id) => {
         try {
-            const response = await axios.delete(`https://skystayserver-n8xf.onrender.com/promocodes/${promocode_id}`);
+            const response = await axios.delete(API_ENDPOINTS.PROMO.DETAIL(promocode_id));
             if (response.status === 200) {
                 await fetchAllPromocodesWithoutCache();
                 showToast('Promocode deleted successfully!');
@@ -116,7 +117,7 @@ export default function PromoCodesProvider({ children }) {
 
     const fetchAllFeatures = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/features');
+            const response = await axios.get(API_ENDPOINTS.FEATURES.LIST);
             setAllFeatures(response.data);
         } catch (error) {
             console.error('Error fetching all features:', error);
@@ -125,7 +126,7 @@ export default function PromoCodesProvider({ children }) {
 
     const addFeature = async (featureData) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/feature', featureData);
+            const response = await axios.post(API_ENDPOINTS.FEATURES.CREATE, featureData);
             if (response.status === 201) {
                 await fetchAllFeatures();
                 showToast('Feature added successfully!');
@@ -138,7 +139,7 @@ export default function PromoCodesProvider({ children }) {
 
     const deleteFeature = async (feature_id) => {
         try {
-            const response = await axios.delete(`https://skystayserver-n8xf.onrender.com/feature/${feature_id}`);
+            const response = await axios.delete(API_ENDPOINTS.FEATURES.DELETE(feature_id));
             if (response.status === 200) {
                 await fetchAllFeatures();
                 showToast('Feature deleted successfully!');

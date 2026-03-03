@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import BookingsCard from '../components/BookingsCard'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api';
 import { UserContext } from '../context/UserContext'
 
 export default function MyBookings() {
@@ -13,7 +14,7 @@ export default function MyBookings() {
 
   useEffect(() => {
     if (user && user.id) {
-      axios.get(`https://skystayserver-n8xf.onrender.com/checkouts/${user.id}`)
+      axios.get(API_ENDPOINTS.CUSTOM.CHECKOUTS(user.id))
         .then(response => {
           const allBookings = response.data;
           const now = new Date();

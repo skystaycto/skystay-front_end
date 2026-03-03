@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import '../css/Dashboard.css'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api';
 import Editor from '../components/Editor'
 import { Button } from '../components/ui/button'
 import { useParams } from 'react-router-dom'
@@ -19,7 +20,7 @@ export default function EditBlog() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`https://skystayserver-n8xf.onrender.com/blogs/${id}`);
+        const response = await axios.get(API_ENDPOINTS.BLOG.DETAIL(id));
         const blogData = response.data;
         setSingleBlog(blogData);
         setBlogTitle(blogData.title);
@@ -51,7 +52,7 @@ export default function EditBlog() {
       const formData = new FormData();
       formData.append('file', imageFile);
       try {
-        const response = await fetch('https://skystayserver-n8xf.onrender.com/upload', {
+        const response = await fetch(API_ENDPOINTS.UPLOAD.UPLOAD_SINGLE, {
           method: 'POST',
           body: formData,
         });

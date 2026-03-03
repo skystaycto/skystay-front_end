@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
+import API_ENDPOINTS from '../config/api';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -22,7 +23,7 @@ export default function CommentProvider({children}){
                 confirmButtonText: "Yes!"
             });
             if (confirmation.isConfirmed) {
-                const response = await axios.delete(`https://skystayserver-n8xf.onrender.com/comments/${comment_id}`);
+                const response = await axios.delete(API_ENDPOINTS.SOCIAL.COMMENT(comment_id));
                 toast.success('Comment deleted successfully!', {
                     position: "top-left",
                     autoClose: 1500,

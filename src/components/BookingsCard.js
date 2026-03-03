@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api'
 import share from '../assets/share.svg'
 import heart from '../assets/heart.svg'
 import heartpink from '../assets/heartpink.svg'
@@ -20,7 +21,7 @@ export default function BookingsCard({ booking }) {
 
     useEffect(() => {
         if (booking.property_id) {
-            axios.get(`https://skystayserver-n8xf.onrender.com/property/${booking.property_id}`)
+            axios.get(API_ENDPOINTS.PROPERTY.DETAIL(booking.property_id))
                 .then(response => {
                     setProperty(response.data);
                 })
@@ -39,7 +40,7 @@ export default function BookingsCard({ booking }) {
 
     useEffect(() => {
         if (property.id && user && user.id) {
-            axios.get(`https://skystayserver-n8xf.onrender.com/comments/${property.id}`)
+            axios.get(API_ENDPOINTS.SOCIAL.COMMENTS)
                 .then(response => {
                     const userCommented = response.data.some(comment => comment.user_id === user.id);
                     setIsCommented(userCommented);

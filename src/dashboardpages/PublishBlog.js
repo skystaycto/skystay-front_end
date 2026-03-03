@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Editor from '../components/Editor';
 import { Button } from '../components/ui/button';
+import API_ENDPOINTS from '../config/api';
 import { UserContext } from '../context/UserContext';
 import { BlogsContext } from '../context/BlogsContext';
 
@@ -37,7 +38,7 @@ export default function PublishBlog() {
       formData.append('file', imageFile);
 
       try {
-        const response = await fetch('https://skystayserver-n8xf.onrender.com/upload', {
+        const response = await fetch(API_ENDPOINTS.UPLOAD.UPLOAD_SINGLE, {
           method: 'POST',
           body: formData,
         });

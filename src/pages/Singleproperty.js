@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import API_ENDPOINTS from '../config/api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/Home.css' // Could remove or keep
@@ -35,7 +36,7 @@ export default function Singleproperty() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await fetch(`https://skystayserver-n8xf.onrender.com/singleproperty/${property_id}`);
+        const response = await fetch(API_ENDPOINTS.CUSTOM.SINGLE_PROPERTY(property_id));
         if (!response.ok) {
           throw new Error('Property not found');
         }

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api'
 import { toast, Slide } from 'react-toastify';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -50,7 +51,7 @@ export default function CommentCard({ handleCommentClick, property }) {
             visible: true
         };
 
-        axios.post('https://skystayserver-n8xf.onrender.com/comments', newComment)
+        axios.post(API_ENDPOINTS.SOCIAL.COMMENTS, newComment)
             .then((response) => {
                 toast.success('Comment Posted!', {
                     position: 'top-right',

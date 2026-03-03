@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { PropertyContext } from '../context/PropertyContext';
+import API_ENDPOINTS from '../config/api';
 import Select from 'react-select';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -30,7 +31,7 @@ export default function ManageCard({ listing: initialListing, allfeatures }) {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`https://skystayserver-n8xf.onrender.com/myuser/${listing.owner_id}`);
+        const response = await axios.get(API_ENDPOINTS.USER.MY_USER(listing.owner_id));
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user details:', error);
@@ -102,7 +103,7 @@ export default function ManageCard({ listing: initialListing, allfeatures }) {
 
   const saveFeature = async () => {
     try {
-      await axios.patch(`https://skystayserver-n8xf.onrender.com/propertypromo/${listing.id}`, {
+      await axios.patch(API_ENDPOINTS.PROPERTY.PROPERTY_PROMO(listing.id), {
         promo_feature: selectedFeature,
       });
       setListing((prevListing) => ({
@@ -120,7 +121,7 @@ export default function ManageCard({ listing: initialListing, allfeatures }) {
 
   const handleVisibility = async () => {
     try {
-      await axios.patch(`https://skystayserver-n8xf.onrender.com/propertyvisibility/${listing.id}`, {
+      await axios.patch(API_ENDPOINTS.PROPERTY.PROPERTY_VISIBILITY(listing.id), {
         visible: !listing.visible,
       });
       setListing((prevListing) => ({

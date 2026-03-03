@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Button } from '../components/ui/button'
 import Editor from '../components/Editor'
+import API_ENDPOINTS from '../config/api';
 import { useParams } from 'react-router-dom'
 import SelectAmmenities2 from '../components/SelectAmmenities'
 import UploadPhotos2 from '../components/Uploadphoto2'
@@ -45,7 +46,7 @@ export default function EditProperty() {
   useEffect(() => {
     const fetchPropertyData = async () => {
       try {
-        const response = await fetch(`https://skystayserver-n8xf.onrender.com/singleproperty/${property_id}`);
+        const response = await fetch(API_ENDPOINTS.CUSTOM.SINGLE_PROPERTY(property_id));
         if (!response.ok) throw new Error('Failed to fetch property');
         const data = await response.json();
 

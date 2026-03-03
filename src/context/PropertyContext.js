@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
+import API_ENDPOINTS from '../config/api';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -24,7 +25,7 @@ export default function PropertyProvider ({children}){
     
     const addProperty = async ( newProperty) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/property', newProperty);
+            const response = await axios.post(API_ENDPOINTS.PROPERTY.CREATE, newProperty);
             if (response.status === 201) {
                 toast.success('Property Listed!', {
                     position: "top-left",
@@ -63,7 +64,7 @@ export default function PropertyProvider ({children}){
         }
 
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/allproperty');
+            const response = await axios.get(API_ENDPOINTS.PROPERTY.LIST);
             setAllproperties(response.data);
 
             // Update cache
@@ -87,7 +88,7 @@ export default function PropertyProvider ({children}){
     
     const fetchPropertiesNoCache = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/allproperty');
+            const response = await axios.get(API_ENDPOINTS.PROPERTY.LIST);
             setAllproperties(response.data);
         } catch (err) {
             Swal.fire({
@@ -125,7 +126,7 @@ export default function PropertyProvider ({children}){
         console.log(`Updating property ${propertyId} with dates:`, allDates);
     
         try {
-            const response = await axios.put(`https://skystayserver-n8xf.onrender.com/property/${propertyId}`, { dates_booked: allDates });
+            const response = await axios.put(API_ENDPOINTS.PROPERTY.UPDATE(propertyId), { dates_booked: allDates });
             console.log('Server response:', response.data);
             fetchProperties(); // Assuming this refreshes the property data
             return response.data;
@@ -137,7 +138,7 @@ export default function PropertyProvider ({children}){
 
     const updateProperty = async (propertyId, data) => {
         try {
-            const response = await axios.put(`https://skystayserver-n8xf.onrender.com/property/${propertyId}`, data);
+            const response = await axios.put(API_ENDPOINTS.PROPERTY.UPDATE(propertyId), data);
             console.log('Server response:', response.data);
             fetchProperties(); // Assuming this refreshes the property data
             return response.data;

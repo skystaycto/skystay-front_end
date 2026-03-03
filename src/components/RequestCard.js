@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api';
 import { ListRequestContext } from '../context/ListRequestContext'
 import { Button } from '../components/ui/button'
 
@@ -22,7 +23,7 @@ export default function RequestCard({ request }) {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`https://skystayserver-n8xf.onrender.com/user/${request.user_id}`);
+                const response = await axios.get(API_ENDPOINTS.USER.MY_USER(request.user_id));
                 setUser(response.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);

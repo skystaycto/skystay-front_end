@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import cloud from '../assets/cloud.svg';
 
 const UploadPhotos = ({ setPhotos }) => {
@@ -27,7 +28,7 @@ const UploadPhotos = ({ setPhotos }) => {
       formData.append('files', file);
     });
 
-    axios.post('https://skystayserver-n8xf.onrender.com/uploads', formData)
+    axios.post(API_ENDPOINTS.UPLOAD.UPLOAD, formData)
       .then((response) => {
         console.log('Upload success:', response.data);
         // Debugging response structure

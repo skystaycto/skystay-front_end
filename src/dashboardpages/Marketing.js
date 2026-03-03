@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import delete4 from '../assets/delete4.svg'
 import { jsPDF } from "jspdf"
+import API_ENDPOINTS from '../config/api';
 import 'jspdf-autotable'
 import { PromoCodesContext } from '../context/PromoCodesContext'
 import { Button } from '../components/ui/button'
@@ -46,7 +47,7 @@ export default function Marketing() {
 
     const downloadEmailList = async (format) => {
         try {
-            const response = await fetch('https://skystayserver-n8xf.onrender.com/emails');
+            const response = await fetch(API_ENDPOINTS.CUSTOM.EMAILS);
             const emailList = await response.json();
 
             if (format === 'pdf') {

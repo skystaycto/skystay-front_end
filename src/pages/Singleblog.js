@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import { useParams, NavLink } from 'react-router-dom'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -22,7 +23,7 @@ export default function Singleblog() {
     const fetchBlog = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://skystayserver-n8xf.onrender.com/blogs/${id}`);
+        const response = await axios.get(API_ENDPOINTS.BLOG.DETAIL(id));
         setSingleblog(response.data);
       } catch (error) {
         console.error(error);

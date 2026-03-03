@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Facebook, Instagram, Twitter, Send } from 'lucide-react'
+import API_ENDPOINTS from '../config/api';
 import '../css/Footer.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,7 +13,7 @@ export default function Footer() {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://skystayserver-n8xf.onrender.com/subscribe', {
+      const response = await fetch(API_ENDPOINTS.SUBSCRIBE.SUBSCRIBE, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

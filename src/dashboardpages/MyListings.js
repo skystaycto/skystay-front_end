@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { toast } from 'react-toastify';
+import API_ENDPOINTS from '../config/api';
 import 'react-toastify/dist/ReactToastify.css';
 import { CheckoutContext } from '../context/CheckoutContext';
 import ServiceCard from '../components/ServiceCard'
@@ -51,7 +52,7 @@ export default function MyListings() {
       formData.append('file', imageFile);
 
       try {
-        const response = await fetch('https://skystayserver-n8xf.onrender.com/upload', {
+        const response = await fetch(API_ENDPOINTS.UPLOAD.UPLOAD_SINGLE, {
           method: 'POST',
           body: formData,
         });

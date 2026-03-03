@@ -1,5 +1,6 @@
 import React, { useState, useEffect,useContext } from 'react'
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from './ui/button'
@@ -17,7 +18,7 @@ export default function EditService({toggleEditForm, selectedService}) {
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
-    axios.get(`https://skystayserver-n8xf.onrender.com/singleservice/${selectedService}`)
+    axios.get(API_ENDPOINTS.PROPERTY.SINGLE_SERVICE(selectedService))
     .then((response) => {
       setService(response.data);
       setName(response.data.service_name);
@@ -50,7 +51,7 @@ export default function EditService({toggleEditForm, selectedService}) {
       formData.append('file', imageFile);
 
       try {
-        const response = await fetch('https://skystayserver-n8xf.onrender.com/upload', {
+        const response = await fetch(API_ENDPOINTS.UPLOAD.UPLOAD_SINGLE, {
           method: 'POST',
           body: formData,
         });

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +20,7 @@ export default function ListRequestProvider({ children }) {
     
     const fetchRequests = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/requests');
+            const response = await axios.get(API_ENDPOINTS.CUSTOM.REQUESTS);
             setRequests(response.data);
         } catch (err) {
             setError(err);
@@ -44,7 +45,7 @@ export default function ListRequestProvider({ children }) {
                 date_submitted: newRequest.date_submitted.toISOString().split('T')[0], // Format date to YYYY-MM-DD
             };
 
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/requests', formattedRequest);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.REQUESTS, formattedRequest);
             setRequests([...requests, response.data]);
             toast.success('Request Added!', {
                 position: "top-left",
@@ -75,7 +76,7 @@ export default function ListRequestProvider({ children }) {
 
     const editRequestStatus = async (requestId, status) => {
         try {
-            await axios.patch(`https://skystayserver-n8xf.onrender.com/requests/${requestId}`, { status });
+            await axios.patch(API_ENDPOINTS.CUSTOM.REQUEST_DETAIL(requestId), { status });
             setRequests(requests.map(req => req.id === requestId ? { ...req, status } : req));
             toast.success('Status Updated!', {
                 position: "top-left",
@@ -105,7 +106,7 @@ export default function ListRequestProvider({ children }) {
 
     const deleteRequest = async (requestId) => {
         try {
-            await axios.delete(`https://skystayserver-n8xf.onrender.com/requests/${requestId}`);
+            await axios.delete(API_ENDPOINTS.CUSTOM.REQUEST_DETAIL(requestId));
             setRequests(requests.filter(req => req.id !== requestId));
             toast.success('Request Deleted!', {
                 position: "top-left",
@@ -150,7 +151,7 @@ export default function ListRequestProvider({ children }) {
                 closeButton: false,
             });
 
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/myrequests', {
+            const response = await axios.get(API_ENDPOINTS.CUSTOM.MY_REQUESTS, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setMyRequests(response.data);

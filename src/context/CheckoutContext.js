@@ -2,6 +2,7 @@ import { createContext, useState } from 'react'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
+import API_ENDPOINTS from '../config/api';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -13,7 +14,7 @@ export default function CheckoutProvider({children}){
 
     const addCheckout = async (checkoutDetails) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/checkout', checkoutDetails);
+            const response = await axios.post(API_ENDPOINTS.CHECKOUT.CREATE, checkoutDetails);
             if (response.status === 201) {
                 toast.success('Stay Booked!', {
                     position: "top-right",
@@ -50,7 +51,7 @@ export default function CheckoutProvider({children}){
     
     const fetchAllServices = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/alladditionalservice');
+            const response = await axios.get(API_ENDPOINTS.ADDITIONAL_SERVICE.LIST);
             if (response.status === 200) {
                 setAllServices(response.data);
 
@@ -62,7 +63,7 @@ export default function CheckoutProvider({children}){
 
     const addService = async (serviceData) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/additionalservice', serviceData);
+            const response = await axios.post(API_ENDPOINTS.ADDITIONAL_SERVICE.CREATE, serviceData);
             if (response.status === 201) {
                 toast.success('Service created successfully!', {
                     position: "top-right",
@@ -97,7 +98,7 @@ export default function CheckoutProvider({children}){
 
     const editService = async (serviceData, additionalservice_id) => {
         try {
-            const response = await axios.put(`https://skystayserver-n8xf.onrender.com/additionalservice/${additionalservice_id}`, serviceData);
+            const response = await axios.put(API_ENDPOINTS.ADDITIONAL_SERVICE.UPDATE(additionalservice_id), serviceData);
             if (response.status === 200) {
                 fetchAllServices();
                 toast.success('Service updated successfully!', {
@@ -133,7 +134,7 @@ export default function CheckoutProvider({children}){
 
     const deleteService = async (additionalservice_id) => {
         try {
-            const response = await axios.delete(`https://skystayserver-n8xf.onrender.com/additionalservice/${additionalservice_id}`);
+            const response = await axios.delete(API_ENDPOINTS.ADDITIONAL_SERVICE.DELETE(additionalservice_id));
             if (response.status === 200) {
                 fetchAllServices();
                 toast.success('Service deleted successfully!', {

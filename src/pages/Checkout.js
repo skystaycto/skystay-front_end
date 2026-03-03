@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { UserContext } from '../context/UserContext';
+import API_ENDPOINTS from '../config/api';
 import { PromoCodesContext } from '../context/PromoCodesContext';
 import { PesapalContext } from '../context/PesapalContext';
 import FrameComponent from '../components/IframeComponent';
@@ -71,7 +72,7 @@ export default function Checkout() {
   const [request, setRequest] = useState('');
 
   useEffect(() => {
-    axios.get('https://skystayserver-n8xf.onrender.com/alladditionalservice')
+    axios.get(API_ENDPOINTS.ADDITIONAL_SERVICE.LIST)
       .then(response => {
         const servicesWithQuantity = response.data.map(service => ({ ...service, quantity: 0 }));
         setAdditionalServices(servicesWithQuantity);

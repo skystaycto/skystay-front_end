@@ -2,6 +2,7 @@ import { createContext,  useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +24,7 @@ export default function UserProvider({ children }) {
             if (!token) return;
 
             try {
-                const response = await axios.get('https://skystayserver-n8xf.onrender.com/authenticated_user', {
+                const response = await axios.get(API_ENDPOINTS.CUSTOM.AUTHENTICATED_USER, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setUser(response.data);
@@ -41,12 +42,12 @@ export default function UserProvider({ children }) {
 
     const loginUser = async (userdata) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/login', userdata);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.LOGIN, userdata);
             localStorage.setItem('access_token', response.data.access_token);
             if (response.data.refresh_token) {
                 localStorage.setItem('refresh_token', response.data.refresh_token);
             }
-            const userResponse = await axios.get('https://skystayserver-n8xf.onrender.com/authenticated_user', {
+            const userResponse = await axios.get(API_ENDPOINTS.CUSTOM.AUTHENTICATED_USER, {
                 headers: { Authorization: `Bearer ${response.data.access_token}` }
             });
             setUser(userResponse.data);
@@ -83,7 +84,7 @@ export default function UserProvider({ children }) {
 
     const logoutUser = async () => {
         try {
-            await axios.post('https://skystayserver-n8xf.onrender.com/logout', {}, {
+            await axios.post(API_ENDPOINTS.CUSTOM.LOGOUT, {}, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` }
             });
             localStorage.removeItem('access_token');
@@ -121,7 +122,7 @@ export default function UserProvider({ children }) {
 
     const forgotPassword = async (email) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/forgot_password', { email });
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.FORGOT_PASSWORD, { email });
             toast.success('Verification code sent to your email!', {
                 position: "top-left",
                 autoClose: 1500,
@@ -153,7 +154,7 @@ export default function UserProvider({ children }) {
 
     const resetPassword = async (data) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/reset_password', data);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.RESET_PASSWORD, data);
             toast.success('Password reset successful!', {
                 position: "top-left",
                 autoClose: 1500,
@@ -186,7 +187,7 @@ export default function UserProvider({ children }) {
 
     const refreshToken = async () => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/refresh', {}, {
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.REFRESH, {}, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('refresh_token')}` }
             });
             localStorage.setItem('access_token', response.data.access_token);
@@ -210,7 +211,7 @@ export default function UserProvider({ children }) {
 
     const registerUser = async (userdata) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/register', userdata);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.REGISTER, userdata);
             console.log(response.data);
             toast.success('Registration successful! Please check your email for verification.', {
                 position: "top-left",
@@ -244,7 +245,7 @@ export default function UserProvider({ children }) {
 
     const verifyUser = async (userdata) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/verify', userdata);
+            const response = await axios.post(API_ENDPOINTS.CUSTOM.VERIFY, userdata);
             console.log(response.data);
             toast.success('Verification successful!', {
                 position: "top-left",
@@ -284,7 +285,7 @@ export default function UserProvider({ children }) {
         }
     
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/allusers', {
+            const response = await axios.get(API_ENDPOINTS.CUSTOM.ALL_USERS, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             console.log("Get all users response :", response.data);
@@ -309,12 +310,12 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user profile
-            const response = await axios.put('https://skystayserver-n8xf.onrender.com/user', userData, {
+            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER, userData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
             // After successful update, fetch updated user data from backend
-            const getUserResponse = await axios.get('https://skystayserver-n8xf.onrender.com/user', {
+            const getUserResponse = await axios.get(API_ENDPOINTS.CUSTOM.GET_USER, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -353,12 +354,12 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user status
-            const response = await axios.put(`https://skystayserver-n8xf.onrender.com/user/${userId}/status`, { account_status: status }, {
+            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_STATUS(userId), { account_status: status }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
             // After successful update, fetch updated user data from backend
-            const getUserResponse = await axios.get('https://skystayserver-n8xf.onrender.com/allusers', {
+            const getUserResponse = await axios.get(API_ENDPOINTS.CUSTOM.ALL_USERS, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -397,7 +398,7 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user role
-            const response = await axios.put(`https://skystayserver-n8xf.onrender.com/user/${userId}/role`, { role }, {
+            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_ROLE(userId), { role }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -438,7 +439,7 @@ export default function UserProvider({ children }) {
           const decoded = jwtDecode(credential);
     
           // Send the Google credential to your backend
-          const response = await axios.post('https://skystayserver-n8xf.onrender.com/google-login', {
+          const response = await axios.post(API_ENDPOINTS.CUSTOM.GOOGLE_LOGIN, {
             credential,
           });
     

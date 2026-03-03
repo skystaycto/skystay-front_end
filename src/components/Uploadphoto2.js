@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import axios from 'axios';
-import cloud from '../assets/cloud.svg';
+import axios from 'axios';import API_ENDPOINTS from '../config/api';import cloud from '../assets/cloud.svg';
 
 const UploadPhotos2 = ({ photos, setPhotos, setUploadPromise }) => {
   const [previews, setPreviews] = useState([]);
@@ -51,7 +50,7 @@ const UploadPhotos2 = ({ photos, setPhotos, setUploadPromise }) => {
         formData.append('files', file);
       });
 
-      axios.post('https://skystayserver-n8xf.onrender.com/uploads', formData)
+      axios.post(API_ENDPOINTS.UPLOAD.UPLOAD, formData)
         .then((response) => {
           console.log('Upload success:', response.data);
           const secureUrls = response.data;

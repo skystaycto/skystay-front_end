@@ -1,3 +1,11 @@
 node_modules
 build
-
+.env
+.env.local
+./src/config/api-example.js
+BACKEND_ENDPOINTS.md
+FRONTEND_API_INTEGRATION.md
+FRONTEND_BACKEND_SETUP.md
+API_USAGE_GUIDE.md
+MIGRATION_SUMMARY.md
+COMPLETION_STATUS.md

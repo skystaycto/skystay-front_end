@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import '../css/Dashboard.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,7 +46,7 @@ export default function MyProfile() {
     if (cachedProperties) {
       setMyProperty(JSON.parse(cachedProperties));
     } else if (user) {
-      axios.get(`https://skystayserver-n8xf.onrender.com/userproperty/${parseInt(user.userid, 10)}`)
+      axios.get(API_ENDPOINTS.CUSTOM.USER_PROPERTY(parseInt(user.userid, 10)))
         .then(response => {
           setMyProperty(response.data);
           localStorage.setItem('myProperties', JSON.stringify(response.data));
@@ -58,7 +59,7 @@ export default function MyProfile() {
 
   useEffect(() => {
     if (user) {
-      axios.get(`https://skystayserver-n8xf.onrender.com/user/${parseInt(user.id, 10)}/liked_properties`)
+      axios.get(API_ENDPOINTS.CUSTOM.LIKED_PROPERTIES(parseInt(user.id, 10)))
         .then(response => {
           setLikedProperties(response.data);
         })
@@ -100,7 +101,7 @@ export default function MyProfile() {
       formData.append('file', imageFile);
 
       try {
-        const response = await fetch('https://skystayserver-n8xf.onrender.com/upload', {
+        const response = await fetch(API_ENDPOINTS.UPLOAD.UPLOAD_SINGLE, {
           method: 'POST',
           body: formData,
         });

@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { pastbookings } from '../constants/listings'
 import axios from 'axios'
+import API_ENDPOINTS from '../config/api';
 import Swal from 'sweetalert2';
 import { toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +21,7 @@ export default function LikesProvider({ children }) {
 
     const fetchLikes = async () => {
         try {
-            const response = await axios.get('https://skystayserver-n8xf.onrender.com/likes');
+            const response = await axios.get(API_ENDPOINTS.SOCIAL.LIKES);
             setLikes(response.data);
         } catch (error) {
             console.error('Error fetching likes:', error);
@@ -32,7 +33,7 @@ export default function LikesProvider({ children }) {
 
     const addLike = async (likeData) => {
         try {
-            const response = await axios.post('https://skystayserver-n8xf.onrender.com/likes', likeData);
+            const response = await axios.post(API_ENDPOINTS.SOCIAL.LIKES, likeData);
             setLikes([...likes, { ...likeData, id: response.data.id }]);
             showToast('Added to Favorites');
         } catch (error) {
@@ -43,7 +44,7 @@ export default function LikesProvider({ children }) {
 
     const deleteLike = async (userId, propertyId) => {
         try {
-            await axios.delete(`https://skystayserver-n8xf.onrender.com/likes/${userId}/${propertyId}`);
+            await axios.delete(API_ENDPOINTS.SOCIAL.LIKES + `/${userId}/${propertyId}`);
             setLikes(likes.filter(like => !(like.user_id === userId && like.property_id === propertyId)));
             showToast('Removed from Favorites');
         } catch (error) {

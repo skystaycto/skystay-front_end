@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import API_ENDPOINTS from '../config/api';
 import search2 from '../assets/search2.svg';
 import ManageCard from '../components/ManageCard';
 import { PropertyContext } from '../context/PropertyContext';
@@ -28,7 +29,7 @@ export default function ManageListing() {
   useEffect(() => {
     const fetchAllFeatures = async () => {
       try {
-        const response = await axios.get('https://skystayserver-n8xf.onrender.com/features');
+        const response = await axios.get(API_ENDPOINTS.FEATURES.LIST);
         setAllFeatures(response.data);
       } catch (error) {
         console.error('Error fetching all features:', error);
