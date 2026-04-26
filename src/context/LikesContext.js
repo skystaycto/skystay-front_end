@@ -1,6 +1,4 @@
 import { createContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { pastbookings } from '../constants/listings'
 import axios from 'axios'
 import API_ENDPOINTS from '../config/api';
 import Swal from 'sweetalert2';

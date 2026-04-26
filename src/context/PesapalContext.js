@@ -7,10 +7,13 @@ export const PesapalContext = createContext();
 export default function PesapalProvider({ children }) {
 
     const [token, setToken] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [orderData, setOrderData] = useState({});
     const [notificationid] = useState('879bc49d-2d1b-4977-8f46-dcacffd962dd');
+    // eslint-disable-next-line no-unused-vars
     const [callback_url, setCallback_url] = useState('https://www.skystay.homes/paymentresponse');
     // Gotten from order Request
+    // eslint-disable-next-line no-unused-vars
     const [merchant_reference,setMerchant_reference] = useState('');
     const [redirect_url,setRedirect_url] = useState('');
     const [order_tracking_id, setOrder_tracking_id] = useState('');

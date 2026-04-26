@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import UploadPhotos from '../components/Uploadphoto'
 import PhotosUpload from '../components/PhotosUpload'
 import { Button } from '../components/ui/button'

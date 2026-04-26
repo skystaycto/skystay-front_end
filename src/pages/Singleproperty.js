@@ -5,7 +5,7 @@ import API_ENDPOINTS from '../config/api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../css/Home.css' // Could remove or keep
-import Comments from '../components/Comments';
+
 import Ammenities from '../components/Ammenities';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +15,7 @@ import { LikesContext } from '../context/LikesContext';
 
 // Icons
 import { Share, Heart, MapPin, Grid, Star, ShieldCheck, MessageCircle, Key, Award, Sparkles, ChevronLeft } from 'lucide-react';
-import ReserveCard from '../components/Reservecard';
+
 
 export default function Singleproperty() {
 
@@ -30,7 +30,7 @@ export default function Singleproperty() {
   const [isReserveCardVisible, setIsReserveCardVisible] = useState(false);
 
   // Pagination states
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const commentsPerPage = 4;
 
   useEffect(() => {

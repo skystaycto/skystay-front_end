@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import building1 from '../assets/building1.svg';
-import booking from '../assets/booking.svg'; // Just using some placeholder icons if needed
+
 import landscape from '../assets/propertylandscape.jpg';
 
 export default function Sky() {

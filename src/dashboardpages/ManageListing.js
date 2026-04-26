@@ -4,7 +4,7 @@ import API_ENDPOINTS from '../config/api';
 import search2 from '../assets/search2.svg';
 import ManageCard from '../components/ManageCard';
 import { PropertyContext } from '../context/PropertyContext';
-import { Button } from '../components/ui/button';
+
 
 export default function ManageListing() {
 

@@ -4,7 +4,7 @@ import API_ENDPOINTS from '../config/api';
 import { useParams, NavLink } from 'react-router-dom'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Articlecard from '../components/Articlecard'
+
 import { BlogsContext } from '../context/BlogsContext';
 import { CalendarDays, ChevronLeft, Share2 } from 'lucide-react';
 

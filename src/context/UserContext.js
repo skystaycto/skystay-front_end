@@ -8,7 +8,7 @@ import { toast, ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import '../css/sweetalert-custom.css'
-import { useGoogleLogin, googleLogout } from '@react-oauth/google';
+
 
 export const UserContext = createContext();
 
@@ -37,6 +37,7 @@ export default function UserProvider({ children }) {
         };
 
         checkAuthStatus();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
@@ -122,7 +123,7 @@ export default function UserProvider({ children }) {
 
     const forgotPassword = async (email) => {
         try {
-            const response = await axios.post(API_ENDPOINTS.CUSTOM.FORGOT_PASSWORD, { email });
+            await axios.post(API_ENDPOINTS.CUSTOM.FORGOT_PASSWORD, { email });
             toast.success('Verification code sent to your email!', {
                 position: "top-left",
                 autoClose: 1500,
@@ -154,7 +155,7 @@ export default function UserProvider({ children }) {
 
     const resetPassword = async (data) => {
         try {
-            const response = await axios.post(API_ENDPOINTS.CUSTOM.RESET_PASSWORD, data);
+            await axios.post(API_ENDPOINTS.CUSTOM.RESET_PASSWORD, data);
             toast.success('Password reset successful!', {
                 position: "top-left",
                 autoClose: 1500,
@@ -299,6 +300,7 @@ export default function UserProvider({ children }) {
                 toast.error('Failed to fetch users.');
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Dependency array should be empty if this function doesn't rely on external variables
     
     const updateUser = async (userData) => {
@@ -310,7 +312,7 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user profile
-            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER, userData, {
+            await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER, userData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -354,7 +356,7 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user status
-            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_STATUS(userId), { account_status: status }, {
+            await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_STATUS(userId), { account_status: status }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -398,7 +400,7 @@ export default function UserProvider({ children }) {
     
         try {
             // Make PUT request to update user role
-            const response = await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_ROLE(userId), { role }, {
+            await axios.put(API_ENDPOINTS.CUSTOM.UPDATE_USER_ROLE(userId), { role }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
     
@@ -436,7 +438,7 @@ export default function UserProvider({ children }) {
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
           const credential = credentialResponse.credential;
-          const decoded = jwtDecode(credential);
+          // const decoded = jwtDecode(credential);
     
           // Send the Google credential to your backend
           const response = await axios.post(API_ENDPOINTS.CUSTOM.GOOGLE_LOGIN, {

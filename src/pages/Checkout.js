@@ -14,9 +14,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import personal from '../assets/personal.svg'
 import promo from '../assets/Promo.svg'
 import conditions from '../assets/conditions.svg'
-import { Button } from '../components/ui/button'
-import night from '../assets/night.svg'
-import bankcard from '../assets/bankcard.svg'
+
 import { CreditCard, ShieldCheck } from 'lucide-react';
 
 export default function Checkout() {

@@ -36,7 +36,7 @@ export default function Propertycard({ property }) {
                 className='h-full w-full object-cover aspect-[4/3] sm:aspect-square'
                 src={image}
                 alt={`property pic ${index + 1}`}
-                onError={(e) => { e.target.src = 'https://via.placeholder.com/400x400?text=SkyStay'; }}
+                onError={(e) => { e.target.src = 'https://placehold.co/400x400?text=SkyStay'; }}
               />
             </div>
           ))}

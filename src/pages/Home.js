@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -18,6 +18,7 @@ export default function Home() {
     fetchProperties();
     getallblogs();
     AOS.init({ duration: 800, once: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categories = [
