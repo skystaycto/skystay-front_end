@@ -142,7 +142,7 @@ export default function Navbar() {
                                     ) : (
                                         <>
                                             <div onClick={toggleLoginCard} className='px-4 py-3 hover:bg-black/5 text-sm font-bold cursor-pointer transition-colors'>Log in</div>
-                                            <NavLink to="/signup" className='px-4 py-2 hover:bg-black/5 text-sm cursor-pointer transition-colors'>Sign up</NavLink>
+                                            <NavLink to="/signup" state={{ role: 'Client' }} className='px-4 py-2 hover:bg-black/5 text-sm cursor-pointer transition-colors'>Sign up</NavLink>
                                             <div className='border-t border-gray-100/50 my-1'></div>
                                             <NavLink to="/listing" className='px-4 py-2 hover:bg-black/5 text-sm transition-colors'>SkyStay your home</NavLink>
                                             <NavLink to="/contactus" className='px-4 py-2 hover:bg-black/5 text-sm transition-colors'>Help Center</NavLink>

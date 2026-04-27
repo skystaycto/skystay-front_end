@@ -3,7 +3,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input';
 import { Helmet } from 'react-helmet-async';
 import { GoogleLogin } from '@react-oauth/google';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import signupbanner from '../assets/signupbanner.jpg';
 import { UserContext } from '../context/UserContext';
 import AOS from 'aos';
@@ -12,6 +12,8 @@ import 'aos/dist/aos.css';
 export default function Signup() {
   const { registerUser, handleGoogleSuccess } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const role = location.state?.role || 'Client';
 
   React.useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -20,11 +22,12 @@ export default function Signup() {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
+    company_name: '',
     email: '',
     phone_no: '',
     password: '',
     confirm_password: '',
-    role: 'Client',
+    role: role,
   });
 
   const handleChange = (e) => {
@@ -75,7 +78,7 @@ export default function Signup() {
             <div className='absolute top-0 right-0 w-64 h-64 bg-blue/5 rounded-full blur-[80px] pointer-events-none'></div>
 
             <div className='text-center mb-10 relative z-10'>
-              <h1 className='text-3xl font-extrabold text-gray-900 tracking-tight'>Create an account</h1>
+              <h1 className='text-3xl font-extrabold text-gray-900 tracking-tight'>{role === 'Host' ? 'Become a Host' : 'Create an account'}</h1>
               <p className='text-gray-500 mt-2 font-medium'>Welcome to SkyStay.Homes</p>
             </div>
 
@@ -90,6 +93,13 @@ export default function Signup() {
                   <input className='w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all' type='text' name='last_name' value={formData.last_name} onChange={handleChange} placeholder='Last name' required />
                 </div>
               </div>
+
+              {role === 'Host' && (
+                <div>
+                  <label className='block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2'>Company Name (Optional)</label>
+                  <input className='w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all' type='text' name='company_name' value={formData.company_name} onChange={handleChange} placeholder='Your Company Name' />
+                </div>
+              )}
 
               <div>
                 <label className='block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2'>Email</label>
@@ -135,8 +145,8 @@ export default function Signup() {
           <img src={signupbanner} alt='banner' className='w-full h-full object-cover' />
           <div className='absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent'></div>
           <div className='absolute bottom-12 left-12 right-12'>
-            <h2 className='text-4xl font-extrabold text-white mb-4'>Your journey starts here.</h2>
-            <p className='text-white/80 text-lg'>Join SkyStay to access exclusive properties, seamless booking, and premium host services.</p>
+            <h2 className='text-4xl font-extrabold text-white mb-4'>{role === 'Host' ? 'List your property today.' : 'Your journey starts here.'}</h2>
+            <p className='text-white/80 text-lg'>{role === 'Host' ? 'Join SkyStay to manage your properties, reach millions of travelers, and maximize your rental potential.' : 'Join SkyStay to access exclusive properties, seamless booking, and premium host services.'}</p>
           </div>
         </div>
 

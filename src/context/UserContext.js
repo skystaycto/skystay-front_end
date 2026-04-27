@@ -27,7 +27,7 @@ export default function UserProvider({ children }) {
                 const response = await axios.get(API_ENDPOINTS.CUSTOM.AUTHENTICATED_USER, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-                setUser(response.data);
+                setUser(response.data?.data || response.data);
             } catch (error) {
                 console.error("Auth Check Error: ", error.response?.data);
                 if (error.response?.status === 401) {
@@ -44,15 +44,18 @@ export default function UserProvider({ children }) {
     const loginUser = async (userdata) => {
         try {
             const response = await axios.post(API_ENDPOINTS.CUSTOM.LOGIN, userdata);
-            localStorage.setItem('access_token', response.data.access_token);
-            if (response.data.refresh_token) {
-                localStorage.setItem('refresh_token', response.data.refresh_token);
+            const accessToken = response.data?.data?.token?.access_token || response.data?.access_token;
+            const refreshTokenStr = response.data?.data?.token?.refresh_token || response.data?.refresh_token;
+
+            localStorage.setItem('access_token', accessToken);
+            if (refreshTokenStr) {
+                localStorage.setItem('refresh_token', refreshTokenStr);
             }
             const userResponse = await axios.get(API_ENDPOINTS.CUSTOM.AUTHENTICATED_USER, {
-                headers: { Authorization: `Bearer ${response.data.access_token}` }
+                headers: { Authorization: `Bearer ${accessToken}` }
             });
-            setUser(userResponse.data);
-            console.log(userResponse.data);
+            setUser(userResponse.data?.data || userResponse.data);
+            console.log(userResponse.data?.data || userResponse.data);
             toast.success('Login successful!', {
                 position: "top-left",
                 autoClose: 1500,
@@ -322,7 +325,7 @@ export default function UserProvider({ children }) {
             });
     
             // Update local user state with fetched updated user data
-            setUser(getUserResponse.data.user);
+            setUser(getUserResponse.data?.data || getUserResponse.data?.user || getUserResponse.data);
     
             toast.success('User profile updated successfully!',{
                 position: "top-left",

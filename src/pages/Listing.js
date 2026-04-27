@@ -18,8 +18,22 @@ import schnider from '../assets/schnider.jpg'
 
 import { Button } from '../components/ui/button';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { GoogleLogin } from '@react-oauth/google';
 
 export default function Listing() {
+
+  const { loginUser, handleGoogleSuccess } = React.useContext(UserContext);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleHostLogin = async () => {
+    const userdata = { email, password };
+    await loginUser(userdata);
+    setShowLoginModal(false);
+  };
 
   const propertytypes = useMemo(() => ['Vacation Home', 'Apartment', 'Bed & Breakfast', 'Guest House', 'Property'], []);
   const [currentProperty, setCurrentProperty] = useState(propertytypes[0]);
@@ -70,46 +84,56 @@ export default function Listing() {
       </Helmet>
 
       <div className='min-h-screen bg-slate-50 font-outfit pb-20'>
-        {/* Hero Section */}
-        <div className='w-full relative h-[60vh] flex flex-col items-center justify-center overflow-hidden'
-          style={{ backgroundImage: `url(${isImageLoaded ? banner14url : blurDataUrl})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
-          data-aos="fade-down">
+        {/* Hero Section Container */}
+        <div className="relative w-full mb-32">
+          {/* Hero Background */}
+          <div className='w-full relative h-[65vh] min-h-[500px] flex flex-col items-center justify-center overflow-hidden'
+            style={{ backgroundImage: `url(${isImageLoaded ? banner14url : blurDataUrl})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
+            data-aos="fade-down">
 
-          <div className="absolute inset-0 bg-blue/80 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-blue/80 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
 
-          <div className="relative z-10 text-center px-6">
-            <h1 className='text-3xl md:text-5xl font-light text-white mb-4' data-aos="fade-up">Welcome to SkyStay Homes</h1>
-            <p className='text-xl md:text-4xl font-light text-white max-w-4xl leading-tight' data-aos="fade-up" data-aos-delay="200">
-              List Your <span className='text-transparent bg-clip-text bg-pink-blue-gradient font-bold drop-shadow-lg'>{currentProperty}</span> <br />and Reach Millions of Travellers Worldwide
-            </p>
+            <div className="relative z-10 text-center px-6 -mt-16">
+              <h1 className='text-3xl md:text-5xl font-light text-white mb-4' data-aos="fade-up">Welcome to SkyStay Homes</h1>
+              <p className='text-xl md:text-4xl font-light text-white max-w-4xl leading-tight' data-aos="fade-up" data-aos-delay="200">
+                List Your <span className='text-transparent bg-clip-text bg-pink-blue-gradient font-bold drop-shadow-lg'>{currentProperty}</span> <br />and Reach Millions of Travellers Worldwide
+              </p>
+            </div>
+
+            {/* Hidden image to trigger onload */}
+            <img
+              src={banner14url}
+              alt="Banner"
+              onLoad={handleImageLoad}
+              style={{ display: 'none' }}
+            />
           </div>
 
-          {/* Hidden image to trigger onload */}
-          <img
-            src={banner14url}
-            alt="Banner"
-            onLoad={handleImageLoad}
-            style={{ display: 'none' }}
-          />
-
           {/* Floating glass box at the bottom overlapping the next section */}
-          <div className="absolute -bottom-16 w-[90%] md:w-[70%] max-w-4xl bg-white/90 backdrop-blur-md rounded-3xl shadow-soft-lift p-8 md:p-10 border border-white/40" data-aos="fade-up" data-aos-delay="400">
-            <p className='text-base md:text-lg font-light text-center text-gray-700 leading-relaxed mb-6'>
-              "We are thrilled that you are considering listing your property on SkyStay.Homes! Our platform connects property owners with travelers looking for unique and comfortable places to stay. Maximize your rental potential today."
-            </p>
-            <div className='text-center'>
-              <NavLink to={'/onboardform'}>
-                <Button variant='promo' className="rounded-full px-8 py-6 text-lg shadow-glow-blue hover:-translate-y-1 transition-transform">
-                  Onboard Your Property Today!
+          <div className="absolute -bottom-24 left-0 right-0 flex justify-center z-20">
+            <div className="w-[90%] md:w-[85%] max-w-5xl bg-white/95 backdrop-blur-md rounded-3xl shadow-soft-lift p-8 md:p-10 border border-white/40" data-aos="fade-up" data-aos-delay="400">
+              <p className='text-base md:text-lg font-light text-center text-gray-700 leading-relaxed mb-8'>
+                "We are thrilled that you are considering listing your property on SkyStay.Homes! Our platform connects property owners with travelers looking for unique and comfortable places to stay. Maximize your rental potential today."
+              </p>
+              <div className='flex flex-wrap items-center justify-center gap-4'>
+                <NavLink to="/signup" state={{ role: 'Host' }}>
+                  <Button variant='promo' className="rounded-full px-8 py-6 text-lg shadow-glow-blue hover:-translate-y-1 transition-transform bg-pink-blue-gradient text-white border-0 w-full sm:w-auto">
+                    Sign up as a Host
+                  </Button>
+                </NavLink>
+                <Button onClick={() => setShowLoginModal(true)} variant='outline' className="rounded-full px-8 py-6 text-lg hover:-translate-y-1 transition-transform border-gray-300 text-gray-700 bg-white w-full sm:w-auto">
+                  Log in as Host
                 </Button>
-              </NavLink>
+                <NavLink to={'/onboardform'}>
+                  <Button variant='promo' className="rounded-full px-8 py-6 text-lg shadow-glow-pink hover:-translate-y-1 transition-transform bg-white text-pink border border-pink w-full sm:w-auto">
+                    Onboard Property
+                  </Button>
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Spacer for the overlapping box */}
-        <div className="h-32"></div>
 
         {/* Why List Section */}
         <div className='mt-10 py-20 relative'>
@@ -207,15 +231,79 @@ export default function Listing() {
             <p className='text-gray-600 font-light text-lg mb-8 max-w-2xl mx-auto'>
               Join our community of hosts and start earning today! Click the button below to begin your journey with SkyStay Homes.
             </p>
-            <NavLink to={'/onboardform'}>
+            <NavLink to="/signup" state={{ role: 'Host' }}>
               <Button variant='promo' className="rounded-full px-10 py-6 text-lg shadow-glow-pink bg-pink hover:bg-pink/90 border-0 hover:-translate-y-1 transition-transform">
-                List Your Property Now
+                Sign Up as a Host Now
               </Button>
             </NavLink>
           </div>
         </section>
 
       </div>
+
+      {/* Host Login Modal */}
+      {showLoginModal && (
+        <div className='fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm'>
+          <div className='bg-white/95 backdrop-blur-xl rounded-3xl shadow-floating border border-white/20 w-full max-w-[450px] mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-300'>
+            <div className='flex items-center justify-between p-5 border-b border-gray-100/50'>
+              <div className='w-8'></div>
+              <h3 className='font-bold text-lg'>Host Login</h3>
+              <button onClick={() => setShowLoginModal(false)} className='p-2 hover:bg-black/5 rounded-full transition-colors'>
+                <span className='text-xl opacity-60'>&times;</span>
+              </button>
+            </div>
+
+            <div className='p-8'>
+              <div className='space-y-4'>
+                <input
+                  className='w-full p-4 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all'
+                  type='email'
+                  placeholder='Email address'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  className='w-full p-4 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all'
+                  type='password'
+                  placeholder='Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className='flex items-center gap-2 pt-1'>
+                  <input
+                    type='checkbox'
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className='rounded border-gray-300 text-blue focus:ring-blue'
+                  />
+                  <label className='text-sm text-gray-600'>Remember me</label>
+                </div>
+
+                <button
+                  onClick={handleHostLogin}
+                  className='w-full bg-pink-blue-gradient text-white font-bold py-4 rounded-xl hover:shadow-glow-blue hover:-translate-y-1 transition-all duration-300 mt-2'
+                >
+                  Log In
+                </button>
+              </div>
+
+              <div className='relative my-8'>
+                <div className='absolute inset-0 flex items-center'><div className='w-full border-t border-gray-200/60'></div></div>
+                <div className='relative flex justify-center'><span className='bg-white px-4 text-xs font-medium text-gray-500 uppercase tracking-widest'>or</span></div>
+              </div>
+
+              <div className='w-full hover:-translate-y-1 transition-transform duration-300 rounded-xl overflow-hidden shadow-sm'>
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={() => console.log('Login Failed')}
+                  useOneTap
+                  containerProps={{ style: { width: '100%' } }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

@@ -125,7 +125,7 @@ export const API_ENDPOINTS = {
     REQUESTS: `${SERVICES.REQUEST}/requests`,
     REQUEST_DETAIL: (id) => `${SERVICES.REQUEST}/requests/${id}`,
     MY_REQUESTS: `${SERVICES.REQUEST}/myrequests`,
-    AUTHENTICATED_USER: `${SERVICES.USER}/authenticated_user`,
+    AUTHENTICATED_USER: `${SERVICES.USER}/profile`,
     LOGIN: `${SERVICES.USER}/login`,
     LOGOUT: `${SERVICES.USER}/logout`,
     FORGOT_PASSWORD: `${SERVICES.USER}/forgot_password`,
