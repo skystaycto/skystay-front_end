@@ -16,7 +16,8 @@ import {
   Menu,
   X,
   LogOut,
-  Sparkles
+  Sparkles,
+  Network
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,6 +35,7 @@ import ManageBlog from '../dashboardpages/ManageBlog'
 import UserManagement from '../dashboardpages/UserManagement'
 import Settings from '../dashboardpages/Settings'
 import Marketing from '../dashboardpages/Marketing'
+import ChannelManager from '../dashboardpages/ChannelManager'
 
 export default function Dashboard() {
 
@@ -65,6 +67,7 @@ export default function Dashboard() {
       case 'manageBlog': return <ManageBlog />;
       case 'userManagement': return <UserManagement />;
       case 'settings': return <Settings />;
+      case 'channelManager': return <ChannelManager />;
       default: return <MyProfile />;
     }
   };
@@ -82,6 +85,7 @@ export default function Dashboard() {
     { id: 'manageListing', label: 'Manage Listings', icon: Building2, roles: ['Admin'] },
     { id: 'publishBlog', label: 'Publish Blog', icon: FileText, roles: ['Admin', 'Blogger'] },
     { id: 'manageBlog', label: 'Manage Blog', icon: FileText, roles: ['Admin', 'Blogger'] },
+    { id: 'channelManager', label: 'Channel Manager', icon: Network, roles: ['Admin', 'Host'] },
     { id: 'userManagement', label: 'Users', icon: Users, roles: ['Admin'] },
     { id: 'settings', label: 'Settings', icon: SettingsIcon, roles: ['Admin'] },
   ];

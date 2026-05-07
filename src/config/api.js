@@ -14,6 +14,8 @@ const SERVICES = {
   PROMO: 'http://localhost:8088',
   REQUEST: 'http://localhost:8089',
   AIRALO: 'http://localhost:8090',
+  CHANNEL: 'http://localhost:8091',
+  MESSAGING: 'http://localhost:8092',
 };
 
 export const API_ENDPOINTS = {
@@ -259,7 +261,39 @@ export const API_ENDPOINTS = {
     UPDATE: (id) => `http://localhost:8087/api/notifications/${id}`,
     WEBSOCKET: 'http://localhost:8087/api/ws/notifications',
   },
+
+  // Channel Manager Service (Port 8091)
+  CHANNEL: {
+    BASE: `${SERVICES.CHANNEL}/api/v1`,
+    OVERVIEW: `${SERVICES.CHANNEL}/api/v1/overview`,
+    CHANNELS: `${SERVICES.CHANNEL}/api/v1/channels`,
+    CHANNEL_CONNECT: (id) => `${SERVICES.CHANNEL}/api/v1/channels/${id}/connect`,
+    CHANNEL_DISCONNECT: (id) => `${SERVICES.CHANNEL}/api/v1/channels/${id}/disconnect`,
+    CHANNEL_TEST: (id) => `${SERVICES.CHANNEL}/api/v1/channels/${id}/test`,
+    MAPPINGS: `${SERVICES.CHANNEL}/api/v1/mappings`,
+    MAPPING_DELETE: (id) => `${SERVICES.CHANNEL}/api/v1/mappings/${id}`,
+    RATES: `${SERVICES.CHANNEL}/api/v1/rates`,
+    RESERVATIONS: `${SERVICES.CHANNEL}/api/v1/reservations`,
+    RESERVATION_SYNC: `${SERVICES.CHANNEL}/api/v1/reservations/sync`,
+    LOGS: `${SERVICES.CHANNEL}/api/v1/logs`,
+    CONFLICTS: `${SERVICES.CHANNEL}/api/v1/conflicts`,
+    CONFLICT_RESOLVE: (id) => `${SERVICES.CHANNEL}/api/v1/conflicts/${id}/resolve`,
+  },
+
+  // Messaging Service (Port 8092)
+  MESSAGING: {
+    BASE: `${SERVICES.MESSAGING}/api/v1`,
+    STATS: `${SERVICES.MESSAGING}/api/v1/stats`,
+    CONVERSATIONS: `${SERVICES.MESSAGING}/api/v1/conversations`,
+    CONVERSATION: (id) => `${SERVICES.MESSAGING}/api/v1/conversations/${id}`,
+    CONVERSATION_STATUS: (id) => `${SERVICES.MESSAGING}/api/v1/conversations/${id}/status`,
+    MESSAGES: (id) => `${SERVICES.MESSAGING}/api/v1/conversations/${id}/messages`,
+    MESSAGE_RETRY: (convId, msgId) => `${SERVICES.MESSAGING}/api/v1/conversations/${convId}/messages/${msgId}/retry`,
+    TEMPLATES: `${SERVICES.MESSAGING}/api/v1/templates`,
+    TEMPLATE_DELETE: (id) => `${SERVICES.MESSAGING}/api/v1/templates/${id}`,
+  },
 };
+
 
 // Helper function to get service base URL
 export const getServiceURL = (service) => {
@@ -278,13 +312,15 @@ export const getEnvironmentInfo = () => {
       'PAYMENT (8085)',
       'PROMO (8088)',
       'AIRALO (8090)',
+      'CHANNEL (8091)',
+      'MESSAGING (8092)',
     ],
   };
 };
 
 // Helper to check if service is available
 export const isServiceAvailable = (serviceName) => {
-  const runningServices = ['PROPERTY', 'BOOKING', 'PAYMENT', 'PROMO', 'AIRALO'];
+  const runningServices = ['PROPERTY', 'BOOKING', 'PAYMENT', 'PROMO', 'AIRALO', 'CHANNEL', 'MESSAGING'];
   return runningServices.includes(serviceName);
 };
 
